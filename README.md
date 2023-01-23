@@ -5,4 +5,7 @@ Useful for allowing people to remotely access a contained system for securely tr
 ## Usage
 The following command opens the server on TCP port 2222 of the host, mounting an SSH public key and the chroot directory. A user called `testUser` is created.
 ```
-docker run --rm -itdp 2222:22 -v /home/user/.ssh/id_rsa.pub:/keys -v ${PWD}/data:/srv/sftp
+docker run --rm -itdp 2222:22 -v ${HOME}/.ssh/id_rsa.pub:/keys -v ${PWD}/data:/srv tmp-sftp -u testUser -k
+```
+
+Users will then be able to access the server with `sftp -P 2222 testUser@IP`
